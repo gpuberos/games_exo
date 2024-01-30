@@ -9,6 +9,7 @@ $games = findAllGames($dbco);
 // DONE! #1  afficher une fiche détaillée de chaque jeu  (quand je clique sur le nom du jeu, j'ai une page de détail de jeu qui s'affiche === > Récuperer un element par son ID   $_GET)
 // DONE! #2 Creer un formulaire qui permet d'ajouter des nouveau jeux dans la bdd ==> $_POST
 // DONE! #3 - (Bonus ::  Supprimer un jeu de la bdd quand je clique sur le bouton supprimer
+// DONE! #4 - (Non demandé :: Ajout de la fonction update pour mettre à jour une fiche jeu)
 
 ?>
 
