@@ -2,6 +2,8 @@
 
 require_once __DIR__ . ('/utilities/header.php');
 
+if (isset($_GET['id'])) {
+
 // Récupère l'ID du jeu à partir de la superglobale $_GET.
 $currentId = $_GET['id'];
 
@@ -14,3 +16,5 @@ $deleteRequest = $dbco->query($sql);
 echo "<p>Jeu supprimé avec succès</p>";
 
 echo "<p><a href='/'>Retournez à l'accueil</a></p>";
+
+}

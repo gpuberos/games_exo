@@ -1,5 +1,6 @@
 <?php
 
+// Fonction qui récupère tous les jeux de la base de données.
 function findAllGames($db)
 {
     $sql = "SELECT * FROM jeux_video;";
@@ -9,6 +10,7 @@ function findAllGames($db)
     return $games;
 }
 
+// Fonction qui récupère un jeu spécifique de la base de données en utilisant son ID.
 function findGameById($db, $currentId)
 {
     $currentId = $_GET['id'];
