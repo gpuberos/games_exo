@@ -1,3 +1,5 @@
+# Games Exercices
+
 ## Veille PDO & MySQLi
 
 PDO (PHP Data Objects) est une alternative à MySQLi.
@@ -34,22 +36,27 @@ On utilisera PDO si on doit travailler avec de multiples bases de données
 - https://www.php.net/manual/fr/pdo.prepare.php
 - https://www.php.net/manual/fr/pdostatement.bindparam.php
 
-
 ## BDD Games
 
-Nom de la base liste_jeux
+Nom de la base : liste_jeux
 
 Nom de la table : jeux_video
-id 
-nom 
-possesseur 
-console 
-prix 
-nbre_joueurs_max 
-commentaires
+id INT PRIMARY KEY NOT NULL AUTO INCREMENT
+nom VARCHAR
+possesseur VARCHAR
+console VARCHAR
+prix INT
+nbre_joueurs_max INT
+commentaires VARCHAR
 
 Créer un dossier games
-2 objets permettants la communication mysqli ou un objet PDO (mais)
+
+### Notes
+
+2 objets permettants la communication mysqli ou un objet PDO
 
 On va instancier cette classe new PDO pour accéder à la BDD
 Dans toutes les connexions à la BDD il faut traquer les erreurs de connexion pour détecter les erreurs à l'aide d'un try catch
+
+Dans une fonction les paramètres vont aider à personnaliser la fonction.
+Dans la programmation, une fonction est une suite d’instructions qui effectue une tâche spécifique. Les **paramètres** (aussi appelés arguments) sont des valeurs que vous pouvez passer à une fonction pour personnaliser son comportement.
