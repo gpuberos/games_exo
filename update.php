@@ -18,8 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "UPDATE jeux_video SET nom = '$nom', possesseur = '$possesseur', console = '$console', prix = $prix, nbre_joueurs_max = $nbre_joueurs_max, commentaires = '$commentaires' WHERE ID = $currentId";
     
     $dbco->query($sql);
+    
+    // Redirige vers detail.php avec l'ID du jeu modifié
+    header('Location: /detail.php?id=' . $currentId);
 
-    echo "Jeu mis à jour avec succès.";
+    // Ajout d'exit pour arrêter l'execution du script et qu'aucun code après ne soit éxécuté
+    exit;
+
 } else {
     // SINON si le formulaire n'a pas été soumis, récupère les détails actuels du jeu à partir de la base de données.
     $sql = "SELECT * FROM jeux_video WHERE ID = $currentId";
