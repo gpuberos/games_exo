@@ -16,6 +16,7 @@ $game = findGameById($dbco, $_GET['id']);
     <h4>Commentaires : </h4>
     <p><?= $game['commentaires'] ?></p>
     <ul>
-        <li><a href="/delete.php?id=<?= $_GET['id'] ?>">Supprimer <?= $game['nom'] ?></li>
+        <li><a href="/update.php?id=<?= $_GET['id'] ?>">Modifier</a></li>
+        <li><a href="/delete.php?id=<?= $_GET['id'] ?>">Supprimer</a></li>
     </ul>
 </div>
