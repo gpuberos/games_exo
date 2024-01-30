@@ -31,12 +31,17 @@ $result = $dbco-> query($sql);
 // $jeux = $result->fetchAll(PDO::FETCH_ASSOC); // Tableau de jeux []
 $jeux = $result->fetchAll();
 
-foreach ($jeux as $jeu) {
-    echo "
-        <div>
-            <h3> Nom du jeu : " . $jeu['nom'] . "</h3> <br /> 
-            <a href=''>Modifier</a>
-            <a href=''>Supprimer</a>
-        </div>
-        ";
-}
+?>
+
+<form action="">
+    <input type="text" name="" id="">
+</form>
+
+<?php foreach ($jeux as $jeu): ?>
+   <div style="border: 2px solid #ccc">
+        <h3>Nom du jeu : <?= $jeu['nom'] ?></h3>
+        <p>Prix : <?= $jeu['prix'] ?></p>
+        <a href="">Modifier</a>
+        <a href="">Supprimer</a>
+    </div>
+<?php endforeach; ?>
