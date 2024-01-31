@@ -60,3 +60,18 @@ Dans toutes les connexions à la BDD il faut traquer les erreurs de connexion po
 
 Dans une fonction les paramètres vont aider à personnaliser la fonction.
 Dans la programmation, une fonction est une suite d’instructions qui effectue une tâche spécifique. Les **paramètres** (aussi appelés arguments) sont des valeurs que vous pouvez passer à une fonction pour personnaliser son comportement.
+
+
+## Requêtes MySQL préparées
+
+1. étape de préparation
+2. étape de compilation et finalement une dernière 
+3. étape d’exécution
+
+Sources :
+- https://www.pierre-giraud.com/php-mysql-apprendre-coder-cours/requete-preparee/
+- https://www.php.net/manual/fr/pdostatement.bindcolumn.php
+- https://github.com/Castro-711/Web_Dev_CS230/blob/e4869e6295b71c02e7e2552848a5912d5869b25f/Study_Questions/Question_2/Part_3/prepared_statement.php
+- https://www.php.net/manual/fr/mysqli.quickstart.prepared-statements.php
+- https://www.lephpfacile.com/manuel-php/mysqli.quickstart.prepared-statements.php
+- https://www.php.net/manual/fr/pdostatement.bindparam.php

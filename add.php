@@ -14,10 +14,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $commentaires = htmlspecialchars($_POST['commentaires']);
 
         // Requête SQL pour insérer les données du formulaire dans la base de données.
-        $sql = "INSERT INTO jeux_video (nom, possesseur, console, prix, nbre_joueurs_max, commentaires) VALUES ('$nom', '$possesseur', '$console', $prix, $nbre_joueurs_max, '$commentaires')";
+        $sql = "INSERT INTO jeux_video (nom, possesseur, console, prix, nbre_joueurs_max, commentaires) VALUES (:nom, :possesseur, :console, :prix, :nbre_joueurs_max, :commentaires)";
 
         // Exécute la requête SQL.
-        $dbco->query($sql);
+        // $dbco->query($sql);
+
+        // PDOStatement - On prépare la requete
+        $sth = $dbco->prepare($sql);
+
+        $sth->bindParam(':nom', $nom);
+        $sth->bindParam(':possesseur', $possesseur);
+        $sth->bindParam(':console', $console);
+        $sth->bindParam(':prix', $prix, PDO::PARAM_INT);
+        $sth->bindParam(':nbre_joueurs_max', $nbre_joueurs_max, PDO::PARAM_INT);
+        $sth->bindParam(':commentaires', $commentaires);
+
+        $sth->execute();
 
         // Affiche le message de succès si la requête a réussi.
         echo "Jeu ajouté avec succès !";

@@ -16,22 +16,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nbre_joueurs_max = htmlspecialchars($_POST['nbre_joueurs_max']);
     $commentaires = htmlspecialchars($_POST['commentaires']);
 
-    $sql = "UPDATE jeux_video SET nom = '$nom', possesseur = '$possesseur', console = '$console', prix = $prix, nbre_joueurs_max = $nbre_joueurs_max, commentaires = '$commentaires' WHERE ID = $currentId";
-    
-    $dbco->query($sql);
-    
+    $sql = "UPDATE jeux_video SET nom = :nom, possesseur = :possesseur, console = :console, prix = :prix, nbre_joueurs_max = :nbre_joueurs_max, commentaires = :commentaires WHERE ID = :currendId";
+
+    // $dbco->query($sql);
+
+    // PDOStatement - On prépare la requete
+    $sth = $dbco->prepare($sql);
+
+    $sth->bindParam(':nom', $nom);
+    $sth->bindParam(':possesseur', $possesseur);
+    $sth->bindParam(':console', $console);
+    $sth->bindParam(':prix', $prix, PDO::PARAM_INT);
+    $sth->bindParam(':nbre_joueurs_max', $nbre_joueurs_max, PDO::PARAM_INT);
+    $sth->bindParam(':commentaires', $commentaires);
+    $sth->bindParam(':currendId', $currentId, PDO::PARAM_INT);
+
+    $sth->execute();
+
     // Redirige vers detail.php avec l'ID du jeu modifié
     header('Location: /detail.php?id=' . $currentId);
 
     // Ajout d'exit pour arrêter l'execution du script et qu'aucun code après ne soit éxécuté
     exit;
-
 } else {
     // SINON si le formulaire n'a pas été soumis, récupère les détails actuels du jeu à partir de la base de données.
-    $sql = "SELECT * FROM jeux_video WHERE ID = $currentId";
-    $request = $dbco->query($sql);
-    $game = $request->fetch();
+    $sql = "SELECT * FROM jeux_video WHERE ID = :currendId";
+    // $request = $dbco->query($sql);
 
+    $sth = $dbco->prepare($sql);
+    
+    $sth->bindParam(':currendId', $currentId, PDO::PARAM_INT);
+    
+    $sth->execute();
+
+    $game = $sth->fetch();
 }
 ?>
 
