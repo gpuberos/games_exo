@@ -4,8 +4,12 @@
 function findAllGames($db)
 {
     $sql = "SELECT * FROM jeux_video;";
-    $request = $db->query($sql);
-    $games = $request->fetchAll();
+    
+    $sth = $db->prepare($sql);
+    
+    $sth->execute();
+
+    $games = $sth->fetchAll();
 
     return $games;
 }
@@ -14,9 +18,15 @@ function findAllGames($db)
 function findGameById($db, $currentId)
 {
     $currentId = $_GET['id'];
-    $sql = "SELECT * FROM jeux_video WHERE ID = $currentId";
-    $request = $db->query($sql);
-    $game = $request->fetch();
+    $sql = "SELECT * FROM jeux_video WHERE ID = :currentId";
+
+    $sth = $db->prepare($sql);
+    
+    $sth->bindParam(':currendId', $currentId, PDO::PARAM_INT);
+    
+    $sth->execute();
+
+    $game = $sth->fetch();
 
     return $game;
 }
