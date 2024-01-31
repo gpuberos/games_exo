@@ -61,6 +61,12 @@ Dans toutes les connexions à la BDD il faut traquer les erreurs de connexion po
 Dans une fonction les paramètres vont aider à personnaliser la fonction.
 Dans la programmation, une fonction est une suite d’instructions qui effectue une tâche spécifique. Les **paramètres** (aussi appelés arguments) sont des valeurs que vous pouvez passer à une fonction pour personnaliser son comportement.
 
+Variable qui répresente les chemins __DIR__.
+
+Chemin absolu
+
+echo __DIR__;
+echo __FILE__;
 
 ## Requêtes MySQL préparées
 
