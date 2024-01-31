@@ -5,12 +5,13 @@ require_once __DIR__ . ('/utilities/header.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Récupère les valeurs du formulaire à partir de la superglobale $_POST.
-        $nom = $_POST['nom'];
-        $possesseur = $_POST['possesseur'];
-        $console = $_POST['console'];
-        $prix = $_POST['prix'];
-        $nbre_joueurs_max = $_POST['nbre_joueurs_max'];
-        $commentaires = $_POST['commentaires'];
+        // Ajout de htmlspecialchars() pour échapper les caractères spéciaux et ainsi se protéger contre certaine attaques XSS
+        $nom = htmlspecialchars($_POST['nom']);
+        $possesseur = htmlspecialchars($_POST['possesseur']);
+        $console = htmlspecialchars($_POST['console']);
+        $prix = htmlspecialchars($_POST['prix']);
+        $nbre_joueurs_max = htmlspecialchars($_POST['nbre_joueurs_max']);
+        $commentaires = htmlspecialchars($_POST['commentaires']);
 
         // Requête SQL pour insérer les données du formulaire dans la base de données.
         $sql = "INSERT INTO jeux_video (nom, possesseur, console, prix, nbre_joueurs_max, commentaires) VALUES ('$nom', '$possesseur', '$console', $prix, $nbre_joueurs_max, '$commentaires')";

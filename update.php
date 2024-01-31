@@ -8,12 +8,13 @@ $currentId = $_GET['id'];
 // Vérifie si la méthode de la requête est POST.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Si le formulaire a été soumis, met à jour les détails du jeu dans la base de données.
-    $nom = $_POST['nom'];
-    $possesseur = $_POST['possesseur'];
-    $console = $_POST['console'];
-    $prix = $_POST['prix'];
-    $nbre_joueurs_max = $_POST['nbre_joueurs_max'];
-    $commentaires = $_POST['commentaires'];
+    // Ajout de htmlspecialchars() pour échapper les caractères spéciaux et ainsi se protéger contre certaine attaques XSS
+    $nom = htmlspecialchars($_POST['nom']);
+    $possesseur = htmlspecialchars($_POST['possesseur']);
+    $console = htmlspecialchars($_POST['console']);
+    $prix = htmlspecialchars($_POST['prix']);
+    $nbre_joueurs_max = htmlspecialchars($_POST['nbre_joueurs_max']);
+    $commentaires = htmlspecialchars($_POST['commentaires']);
 
     $sql = "UPDATE jeux_video SET nom = '$nom', possesseur = '$possesseur', console = '$console', prix = $prix, nbre_joueurs_max = $nbre_joueurs_max, commentaires = '$commentaires' WHERE ID = $currentId";
     
