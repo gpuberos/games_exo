@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<form method="post">
+<form method="POST">
     <label for="nom">Nom : </label> <input type="text" name="nom" id="nom" value="<?= $game['nom'] ?>"><br>
     <label for="possesseur">Possesseur : </label><input type="text" name="possesseur" value="<?= $game['possesseur'] ?>"><br>
     <label for="console">Console : </label><input type="text" name="console" id="console" value="<?= $game['console'] ?>"><br>

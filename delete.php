@@ -32,7 +32,7 @@ if (isset($_GET['id']) && isset($_POST['confirm'])) {
     
     // Affiche le formulaire de confirmation
     echo "
-        <form method='post'>
+        <form method='POST'>
             <p><strong>Voulez vous vraiment supprimer ce jeu ?</strong></p>
             <input type='submit' name='confirm' value='Oui'>
             <input type='submit' name='confirm' value='Non'>
