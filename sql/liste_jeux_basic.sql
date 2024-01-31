@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 31 jan. 2024 à 20:39
+-- Généré le : mar. 30 jan. 2024 à 12:17
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `jeux_video`;
 CREATE TABLE IF NOT EXISTS `jeux_video` (
-  `ID` int NOT NULL AUTO_INCREMENT,
+  `ID` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `possesseur` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `console` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `prix` double NOT NULL DEFAULT '0',
   `nbre_joueurs_max` int NOT NULL DEFAULT '0',
   `commentaires` text COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `ID` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `jeux_video`
@@ -61,13 +61,16 @@ INSERT INTO `jeux_video` (`ID`, `nom`, `possesseur`, `console`, `prix`, `nbre_jo
 (18, 'Super Mario Bros 3', 'Michel', 'SuperNES', 10, 2, 'Le meilleur Mario selon moi.'),
 (21, 'Actua Soccer 3', 'Patrick', 'PS', 30, 2, 'Un jeu de foot assez bof ...'),
 (22, 'Time Crisis 3', 'Patrick', 'PS2', 40, 1, 'Un troisième volet efficace mais pas vraiment surprenant'),
+(23, 'X-FILES', 'Patrick', 'PS', 25, 1, 'Un jeu censé ressembler a la série mais assez raté ...'),
 (24, 'Soul Calibur 2', 'Patrick', 'Xbox', 54, 1, 'Un jeu bien axé sur le combat'),
 (25, 'Diablo', 'Patrick', 'PS', 20, 1, 'Comme sur PC mais la c\'est sur un ecran de télé :) !'),
 (26, 'Street Fighter 2', 'Patrick', 'Megadrive', 10, 2, 'Le célèbre jeu de combat !'),
+(27, 'Gundam Battle Assault 2', 'Patrick', 'PS', 29, 1, 'Jeu japonais dont le gameplay est un peu limité. Peu de robots malheureusement'),
 (28, 'Spider-Man', 'Patrick', 'Megadrive', 15, 1, 'Vivez l\'aventure de l\'homme araignée'),
 (29, 'Midtown Madness 3', 'Michel', 'Xbox', 59, 6, 'Dans la suite des autres versions de Midtown Madness'),
 (30, 'Tetris', 'Patrick', 'Gameboy', 5, 1, 'Qui ne connait pas ? '),
 (32, 'Pro Evolution Soccer 3', 'Patrick', 'PS2', 59, 2, 'Un petit jeu de foot sur PS2'),
+(52, 'counter-strick', 'JM', 'PC', 500, 32, '2 étoiles'),
 (34, 'Sydney 2000', 'Patrick', 'Dreamcast', 15, 2, 'Les JO de Sydney dans votre salon !'),
 (35, 'NBA 2k', 'Patrick', 'Dreamcast', 12, 2, 'A votre avis :p ?'),
 (36, 'Aliens Versus Predator : Extinction', 'Michel', 'PS2', 20, 2, 'Un shoot\'em up pour pc'),
@@ -81,49 +84,7 @@ INSERT INTO `jeux_video` (`ID`, `nom`, `possesseur`, `console`, `prix`, `nbre_jo
 (45, 'Harry Potter Et La Chambre Des Secrets', 'Mathieu', 'Xbox', 30, 1, 'Abracadabra !! Le célebre magicien est de retour !'),
 (46, 'Half-Life', 'Corentin', 'PC', 15, 32, 'L\'autre meilleur jeu de tout les temps (surtout ses mods).'),
 (47, 'Myst III Exile', 'Sébastien', 'Xbox', 49, 1, 'Un jeu de réflexion'),
-(48, 'Wario World', 'Sebastien', 'Gamecube', 40, 4, 'Wario vs Mario ! Qui gagnera ! ?'),
-(52, 'counter-strick', 'JM', 'PC', 500, 32, '2 étoiles'),
-(53, 'test12', '24', 'Nintendo', 30, 10, 'mes commentaires tests de modifications 2'),
-(54, 'aaaa', '3', 'PS5', 49, 1, 'Test avec htmlspecialchars'),
-(56, 'modificationprepare', '10', 'PS5', 89, 4, 'Je test la modification avec une requête préparée'),
-(57, 'testvirgule', '10', 'PS5', 10, 10, 'aaaahhh &amp; ,,,,, jjrjrj');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pictures`
---
-
-DROP TABLE IF EXISTS `pictures`;
-CREATE TABLE IF NOT EXISTS `pictures` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `pathImg` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `gameID` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `gameID` (`gameID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `pictures`
---
-
-INSERT INTO `pictures` (`id`, `pathImg`, `gameID`) VALUES
-(1, '/assets/img/games/sonic-the-hedgehog.jpg', 2),
-(2, '/assets/img/games/zeldaocarina.jpg', 3),
-(3, '/assets/img/games/mariokart-64.jpg', 4),
-(4, '/assets/img/games/super-smash-bros-melee.webp', 5),
-(5, '/assets/img/games/enter-the-matrix.jpg', 8),
-(6, '/assets/img/games/maxpayne2.jpg', 9);
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `pictures`
---
-ALTER TABLE `pictures`
-  ADD CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`gameID`) REFERENCES `jeux_video` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+(48, 'Wario World', 'Sebastien', 'Gamecube', 40, 4, 'Wario vs Mario ! Qui gagnera ! ?');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

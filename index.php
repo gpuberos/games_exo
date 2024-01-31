@@ -15,16 +15,30 @@ $games = findAllGames($dbco);
 
 <ul>
     <li><a href="/add.php">Ajouter un jeu</a>
-</li>
+    </li>
 
-<h2>Liste des jeux :</h2>
-<ul>
-    <?php foreach ($games as $game) : ?>
-        <li><a href="/detail.php?id=<?= $game['ID'] ?>"><?= $game['nom'] ?></a></li>
-    <?php endforeach; ?>
-</ul>
-  
-</body>
-</html>
+    <h2>Liste des jeux :</h2>
+    <ul>
+        <?php foreach ($games as $game) : ?>
+            <div style="border: 2px solid #ccc">
+                <p>
+                    <img src="<?php echo empty($game['pathImg']) ? 'chemin_vers_image_vide' : $game['pathImg']; ?>" alt="<?= $game['nom'] ?>" />
+                </p>
+                <h3>Nom du jeu : <?= $game['nom'] ?></h3>
+                <p>Possesseur : <?= $game['possesseur'] ?></p>
+                <p>Console : <?= $game['console'] ?></p>
+                <p>Prix : <?= $game['prix'] ?></p>
+                <p>Nombre de joueurs Max. : <?= $game['nbre_joueurs_max'] ?></p>
+                <h4>Commentaires : </h4>
+                <p><?= $game['commentaires'] ?></p>
+                <ul>
+                    <li><a href="/update.php?id=<?= $game['ID'] ?>">Modifier</a></li>
+                    <li><a href="/delete.php?id=<?= $game['ID'] ?>">Supprimer</a></li>
+                </ul>
+            </div>
+        <?php endforeach; ?>
+    </ul>
 
+    </body>
 
+    </html>

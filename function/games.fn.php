@@ -4,7 +4,10 @@
 function findAllGames($db)
 {
     // Prépare la requête SQL pour sélectionner tous les jeux.
-    $sql = "SELECT * FROM jeux_video;";
+    // $sql = "SELECT * FROM jeux_video;";
+    $sql = "SELECT jv.ID, jv.nom, jv.possesseur, jv.console, jv.prix, jv.nbre_joueurs_max, jv.commentaires, p.pathImg 
+    FROM jeux_video jv
+    LEFT JOIN pictures p ON jv.ID = p.gameID";
 
     // Prépare la requête SQL pour l'exécution.
     $sth = $db->prepare($sql);
