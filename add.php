@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nbre_joueurs_max = htmlspecialchars($_POST['nbre_joueurs_max']);
         $commentaires = htmlspecialchars($_POST['commentaires']);
 
-        // Requête SQL pour insérer les données du formulaire dans la base de données.
+        // Prépare la requête SQL pour insérer les données du formulaire dans la base de données.
         $sql = "INSERT INTO jeux_video (nom, possesseur, console, prix, nbre_joueurs_max, commentaires) VALUES (:nom, :possesseur, :console, :prix, :nbre_joueurs_max, :commentaires)";
 
         // Exécute la requête SQL.
@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // PDOStatement - On prépare la requete
         $sth = $dbco->prepare($sql);
 
+        // Lie les paramètres à la requête SQL.
         $sth->bindParam(':nom', $nom);
         $sth->bindParam(':possesseur', $possesseur);
         $sth->bindParam(':console', $console);
@@ -29,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sth->bindParam(':nbre_joueurs_max', $nbre_joueurs_max, PDO::PARAM_INT);
         $sth->bindParam(':commentaires', $commentaires);
 
+        // Exécute la requête SQL.
         $sth->execute();
 
         // Affiche le message de succès si la requête a réussi.

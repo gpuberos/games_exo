@@ -16,13 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nbre_joueurs_max = htmlspecialchars($_POST['nbre_joueurs_max']);
     $commentaires = htmlspecialchars($_POST['commentaires']);
 
+    // Prépare la requête SQL pour insérer les données du formulaire dans la base de données.
     $sql = "UPDATE jeux_video SET nom = :nom, possesseur = :possesseur, console = :console, prix = :prix, nbre_joueurs_max = :nbre_joueurs_max, commentaires = :commentaires WHERE ID = :currendId";
 
     // $dbco->query($sql);
 
-    // PDOStatement - On prépare la requete
+    // PDOStatement - On prépare la requete SQL pour l'execution
     $sth = $dbco->prepare($sql);
 
+    // Lie les paramètres à la requête SQL
     $sth->bindParam(':nom', $nom);
     $sth->bindParam(':possesseur', $possesseur);
     $sth->bindParam(':console', $console);
@@ -31,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sth->bindParam(':commentaires', $commentaires);
     $sth->bindParam(':currendId', $currentId, PDO::PARAM_INT);
 
+    // Exécute la requête SQL
     $sth->execute();
 
     // Redirige vers detail.php avec l'ID du jeu modifié
@@ -43,12 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "SELECT * FROM jeux_video WHERE ID = :currendId";
     // $request = $dbco->query($sql);
 
+    // Prépare la requete SQL pour l'execution
     $sth = $dbco->prepare($sql);
     
+    // On lie le paramètre à la requête SQL
     $sth->bindParam(':currendId', $currentId, PDO::PARAM_INT);
     
+    // Exécute la requête SQL
     $sth->execute();
 
+    // Récupère les résultats de la requête SQL.
     $game = $sth->fetch();
 }
 ?>
