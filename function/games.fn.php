@@ -22,9 +22,6 @@ function findAllGames($db)
 // Fonction qui récupère un jeu spécifique de la base de données en utilisant son ID.
 function findGameById($db, $currentId)
 {
-    // Récupère l'ID du jeu à partir de la superglobale $_GET.
-    $currentId = $_GET['id'];
-
     // Prépare la requête SQL pour sélectionner le jeu avec l'ID spécifié.
     $sql = "SELECT * FROM jeux_video WHERE ID = :currentId";
 
@@ -32,7 +29,7 @@ function findGameById($db, $currentId)
     $sth = $db->prepare($sql);
 
     // Lie le paramètre à la requête SQL.
-    $sth->bindParam(':currendId', $currentId, PDO::PARAM_INT);
+    $sth->bindParam(':currentId', $currentId, PDO::PARAM_INT);
 
     // Exécute la requête SQL.
     $sth->execute();
