@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Exécute la requête SQL
     $sth->execute();
 
-    // Redirige vers l'accueil
-    header('Location: /');
+    // Redirige vers detail.php avec l'ID du jeu modifié
+    header('Location: /detail.php?id=' . $currentId);
 
     // Ajout d'exit pour arrêter l'execution du script et qu'aucun code après ne soit éxécuté
     exit;
